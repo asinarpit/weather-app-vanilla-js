@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    
+}
+
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #FFF;
+  animation: prixClipFix 2s linear infinite ;
+}
+
+@keyframes rotate {
+  100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+
+
+.loader-active{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0.8);
+}
+
+.list-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  gap: 0.5rem;
+  width: 200px;
+  padding: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.active{
+  opacity: 1;
+}
+
+
+/* width */
+#scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+#scroll::-webkit-scrollbar-track {
+  background: none;
+  background: rgba(255,255,255,0.2);
+  border-radius: 5px;
+}
+
+#scroll::-webkit-scrollbar-track-piece {
+  background: rgba(255,255,255,0.2);
+  border-radius: 5px;
+}
+
+/* Handle */
+#scroll::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 5px;
+}
+
+
+
+

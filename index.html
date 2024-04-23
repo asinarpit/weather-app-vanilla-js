@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./main.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/39c1e83d1f.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+  </head>
+  <body class="w-full h-screen z-10 flex justify-center items-center bg-no-repeat bg-cover bg-center after:absolute after:bg-no-repeat after:bg-[rgba(0,0,0,0.25)] after:w-full after:h-full after:top-0 after:left-0 after:z-20">
+    <div
+      class="w-full max-w-7xl h-[90%] flex flex-col justify-between px-5"
+    >
+      <!-- Current weather -->
+      <section class="flex flex-row justify-between z-30 p-5 backdrop-blur-md border border-white rounded-md">
+        <div class="flex flex-col gap-2">
+          <h1 id="cityName" class="text-4xl sm:text-8xl text-white "></h1>
+          <span id="currentDate" class="text-xl sm:text-2xl font-semibold text-white"></span>
+          <span class="text-3xl sm:text-6xl text-white" id="currentWeatherIcon"></span>
+          <span
+            class="text-2xl sm:text-4xl font-semibold text-white"
+            id="currentWeatherCondition"
+          ></span>
+        </div>
+
+        <div class="text-center">
+          <h2 id="currentTemp" class="text-8xl sm:text-[12rem] whitespace-nowrap text-white"></h2>
+          <p id="currentTempRange" class="text-3xl sm:text-4xl whitespace-nowrap text-white mt-2 ">
+          </p>
+        </div>
+      </section>
+
+      <!-- forecast -->
+
+      <section class="w-full z-30">
+        <!-- navigation -->
+        <nav class="w-full flex flex-col-reverse sm:flex-row gap-5 justify-between items-center cursor-pointer ">
+
+          <ul class="flex gap-10">
+            <li
+              id="hourly"
+              class="text-2xl font-semibold opacity-30 text-white"
+            >
+              Hourly
+            </li>
+            <li id="daily" class="text-2xl opacity-30 text-white font-semibold">
+              Daily
+            </li>
+          </ul>
+
+          <!-- search  -->
+          <div class="bg-white p-2 rounded-full overflow-hidden flex">
+            <input
+              id="inputField"
+              type="text"
+              class="hover:outline-none focus:outline-none px-2 w-full font-medium"
+              placeholder="Search by city name"
+            />
+            <button
+              id="searchBtn"
+              class="bg-transparent outline-none border-none flex justify-center items-center"
+            >
+              <span class="text-gray-500 px-2"
+                ><i class="fa-solid fa-magnifying-glass ml-2"></i
+              ></span>
+            </button>
+          </div>
+        </nav>
+
+        <hr class="border-white/50 border rounded-full w-full my-2 ">
+
+        <div id="scroll" class="w-full overflow-x-auto">
+          <ul id="forecastList" class="flex gap-5 h-[180px] my-5 w-max">
+            <!-- <li class="flex flex-col gap-2 my-5">
+              <p class="text-3xl font-medium">Now</p>
+              <span>Icon goes here</span>
+              <p class="text-3xl font-medium">73<sup>&deg;</sup></p>
+            </li>
+
+            <li class="flex flex-col gap-2 my-5">
+              <p class="text-3xl font-medium">Now</p>
+              <span>Icon goes here</span>
+              <p class="text-3xl font-medium">73<sup>&deg;</sup></p>
+            </li> -->
+          </ul>
+        </div>
+      </section>
+    </div>
+    <!-- 
+
+    <div class="fixed w-full h-screen top-0 left-0 bg-black/80 flex justify-center items-center">
+      <span class="loader"></span>
+    </div> -->
+  </body>
+</html>
