@@ -4,25 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./main.js" defer></script>
     <script
-    type="module"
       src="https://kit.fontawesome.com/39c1e83d1f.js"
       crossorigin="anonymous"
       defer
     ></script>
   </head>
-  <body class="w-full h-screen z-10 flex justify-center items-center bg-no-repeat bg-cover bg-center after:absolute after:bg-no-repeat after:bg-[rgba(0,0,0,0.25)] after:w-full after:h-full after:top-0 after:left-0 after:z-20">
-    <div
-      class="w-full max-w-7xl h-[90%] flex flex-col justify-between px-5"
-    >
+  <body
+    class="w-full sm-h-screen h-full z-10 flex justify-center items-center bg-no-repeat bg-cover bg-center after:absolute after:bg-no-repeat after:bg-[rgba(0,0,0,0.25)] after:w-full after:h-full after:top-0 after:left-0 after:z-20"
+  >
+    <div class="w-full max-w-7xl h-[90%] flex flex-col justify-between p-5 gap-10">
       <!-- Current weather -->
-      <section class="flex flex-row justify-between z-30 p-5 backdrop-blur-md border border-white rounded-md">
+      <section
+        class="flex flex-col text-center sm:text-left sm:flex-row justify-between z-30 p-5 backdrop-blur-md border border-white rounded-md"
+      >
         <div class="flex flex-col gap-2">
-          <h1 id="cityName" class="text-4xl sm:text-8xl text-white "></h1>
-          <span id="currentDate" class="text-xl sm:text-2xl font-semibold text-white"></span>
-          <span class="text-3xl sm:text-6xl text-white" id="currentWeatherIcon"></span>
+          <h1 id="cityName" class="text-6xl sm:text-8xl text-white"></h1>
+          <span
+            id="currentDate"
+            class="text-xl sm:text-2xl font-semibold text-white"
+          ></span>
+          <span
+            class="text-4xl sm:text-6xl mt-5 text-white"
+            id="currentWeatherIcon"
+          ></span>
           <span
             class="text-2xl sm:text-4xl font-semibold text-white"
             id="currentWeatherCondition"
@@ -30,9 +37,14 @@
         </div>
 
         <div class="text-center">
-          <h2 id="currentTemp" class="text-8xl sm:text-[12rem] whitespace-nowrap text-white"></h2>
-          <p id="currentTempRange" class="text-3xl sm:text-4xl whitespace-nowrap text-white mt-2 ">
-          </p>
+          <h2
+            id="currentTemp"
+            class="text-8xl sm:text-[12rem] whitespace-nowrap text-white ml-5"
+          ></h2>
+          <p
+            id="currentTempRange"
+            class="text-3xl sm:text-4xl whitespace-nowrap text-white mt-2"
+          ></p>
         </div>
       </section>
 
@@ -40,8 +52,9 @@
 
       <section class="w-full z-30">
         <!-- navigation -->
-        <nav class="w-full flex flex-col-reverse sm:flex-row gap-5 justify-between items-center cursor-pointer ">
-
+        <nav
+          class="w-full flex flex-col-reverse sm:flex-row gap-5 justify-between items-center cursor-pointer"
+        >
           <ul class="flex gap-10">
             <li
               id="hourly"
@@ -60,7 +73,7 @@
               id="inputField"
               type="text"
               class="hover:outline-none focus:outline-none px-2 w-full font-medium"
-              placeholder="Search by city name"
+              placeholder="Search for cities"
             />
             <button
               id="searchBtn"
@@ -73,7 +86,7 @@
           </div>
         </nav>
 
-        <hr class="border-white/50 border rounded-full w-full my-2 ">
+        <hr class="border-white/50 border rounded-full w-full my-2" />
 
         <div id="scroll" class="w-full overflow-x-auto">
           <ul id="forecastList" class="flex gap-5 h-[180px] my-5 w-max">

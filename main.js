@@ -8,34 +8,35 @@ const currentTemp = document.getElementById("currentTemp");
 const currentTempRange = document.getElementById("currentTempRange");
 const searchBtn = document.getElementById("searchBtn");
 
+
 const weatherMapping = {
   Thunderstorm: {
     icon: "<i class='fa-solid fa-cloud-bolt'></i>",
-    backgroundImage: "url(./images/thunderstorm.jpg)",
+    backgroundImage: "url(/images/thunderstorm.jpg)",
   },
   Drizzle: {
     icon: "<i class='fa-solid fa-cloud-rain'></i>",
-    backgroundImage: "url(./images/drizzle.jpg)",
+    backgroundImage: "url(/images/drizzle.jpg)",
   },
   Rain: {
     icon: "<i class='fa-solid fa-cloud-showers-heavy'></i>",
-    backgroundImage: "url(./images/rain.jpg)",
+    backgroundImage: "url(/images/rain.jpg)",
   },
   Snow: {
     icon: "<i class='fa-solid fa-snowflake'></i>",
-    backgroundImage: "url(./images/snow.jpg)",
+    backgroundImage: "url(/images/snow.jpg)",
   },
   Clear: {
     icon: "<i class='fa-solid fa-sun'></i>",
-    backgroundImage: "url(./images/clear.jpg)",
+    backgroundImage: "url(/images/clear.jpg)",
   },
   Clouds: {
     icon: "<i class='fa-solid fa-cloud'></i>",
-    backgroundImage: "url(./images/clouds.jpg)",
+    backgroundImage: "url(/images/clouds.jpg)",
   },
   Atmosphere: {
     icon: "<i class='fa-solid fa-smog'></i>",
-    backgroundImage: "url(./images/fog.jpg)",
+    backgroundImage: "url(/images/fog.jpg)",
   },
 };
 
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       (error) => {
         console.error("Error fetching current location", error);
+        alert("Please make sure your location is on");
       }
     );
   } else {
@@ -86,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const fetchWeather = async (lat, lon) => {
   return fetch(
-    `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric
 
     `
   )
@@ -164,7 +166,7 @@ const fetchWeatherByCityName = async () => {
 
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=2&appid=${API_KEY}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=2&appid=${API_KEY}`
     );
     const data = await response.json();
     const lat = data[0].lat;
@@ -201,16 +203,27 @@ const fetchHourlyWeather = (data) => {
   data.list
     .filter((item, index) => index < 8)
     .map((item) => {
+      // console.log(item.dt_txt);
       const time = item.dt_txt.split(" ")[1].split(":")[0];
-      const formatTime = time % 12 || 12;
+      // const formatTime = (time % 12 || 12);
       const temp = item.main.temp.toFixed(0);
+
+      // Debugging: Log timestamp, date object, and hours
+      console.log("Unix Timestamp:", item.dt);
+      const milliseconds = item.dt * 1000;
+      const dateObject = new Date(milliseconds);
+      console.log("Date Object:", dateObject);
+      const hours = dateObject.getHours();
+      console.log("Hours:", hours);
+      
+      const period = hours >= 12 ? 'PM' : 'AM';
+      const formatTime = (hours % 12 || 12);
+      
 
       // console.log(temp)
       const liElement = document.createElement("li");
       liElement.classList.add("list-item");
-      liElement.innerHTML = `<p class="text-3xl text-white font-medium">${formatTime} ${
-        item.sys.pod === "n" ? "pm" : "am"
-      }</p>
+      liElement.innerHTML = `<p class="text-3xl text-white font-medium">${formatTime}${period}</p>
   <span class="text-white text-3xl" >${showIcon(item.weather[0].main)}</span>
   <p class="text-3xl text-white font-medium">${temp}<sup>&deg;</sup></p>`;
       forecastList.appendChild(liElement);
