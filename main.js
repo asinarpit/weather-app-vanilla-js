@@ -223,7 +223,7 @@ const fetchHourlyWeather = (data) => {
       // console.log(temp)
       const liElement = document.createElement("li");
       liElement.classList.add("list-item");
-      liElement.innerHTML = `<p class="text-3xl text-white font-medium">${formatTime}${period}</p>
+      liElement.innerHTML = `<p class="text-3xl text-white font-medium">${formatTime} ${period.toLowerCase()}</p>
   <span class="text-white text-3xl" >${showIcon(item.weather[0].main)}</span>
   <p class="text-3xl text-white font-medium">${temp}<sup>&deg;</sup></p>`;
       forecastList.appendChild(liElement);
