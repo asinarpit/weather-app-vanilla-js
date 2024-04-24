@@ -204,17 +204,17 @@ const fetchHourlyWeather = (data) => {
     .filter((item, index) => index < 8)
     .map((item) => {
       // console.log(item.dt_txt);
-      const time = item.dt_txt.split(" ")[1].split(":")[0];
+      // const time = item.dt_txt.split(" ")[1].split(":")[0];
       // const formatTime = (time % 12 || 12);
       const temp = item.main.temp.toFixed(0);
 
       // Debugging: Log timestamp, date object, and hours
-      console.log("Unix Timestamp:", item.dt);
+      // console.log("Unix Timestamp:", item.dt);
       const milliseconds = item.dt * 1000;
       const dateObject = new Date(milliseconds);
-      console.log("Date Object:", dateObject);
+      // console.log("Date Object:", dateObject);
       const hours = dateObject.getHours();
-      console.log("Hours:", hours);
+      // console.log("Hours:", hours);
       
       const period = hours >= 12 ? 'PM' : 'AM';
       const formatTime = (hours % 12 || 12);
@@ -237,9 +237,12 @@ const fetchDailyWeather = (data) => {
     .filter((i) => i.dt_txt.split(" ")[1].split(":")[0] === "00")
     .map((item) => {
       // console.log(item.dt_txt);
-      const now = new Date(item.dt_txt.split(" ")[0]);
-      const day = now.getDay();
+      // const now = new Date(item.dt_txt.split(" ")[0]);
+      // const day = now.getDay();
 
+      const milliseconds = item.dt * 1000;
+      const dateObject = new Date(milliseconds);
+      const day = dateObject.getDay();
       const dayNames = [
         "Sunday",
         "Monday",
